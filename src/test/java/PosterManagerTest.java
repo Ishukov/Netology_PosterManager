@@ -1,6 +1,4 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -17,7 +15,6 @@ public class PosterManagerTest {
     Poster movieName8 = new Poster("Матрица");
     Poster movieName9 = new Poster("Карты, деньги, 2 ствола");
     Poster movieName10 = new Poster("Джон Уик");
-
 
 
     @Test
@@ -60,6 +57,7 @@ public class PosterManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
     @ParameterizedTest
     @CsvFileSource(resources = "FindLastDate.csv")
     public void shouldFindLast(int findLast, int expected) {
