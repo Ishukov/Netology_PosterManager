@@ -3,45 +3,40 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+
 public class PosterManager {
-    public Poster[] movieNames = new Poster[0];
-    public Poster[] lastMovie = new Poster[0];
-    public int lastMovieLength = 10;
+    private Poster[] posters = new Poster[0];
+    private int lastMovies = 10;
 
-    public PosterManager(int findLast) {
-        if (findLast < 0) {
-            return;
-        }
-        lastMovieLength = findLast;
+    public PosterManager(int selectLastMovies) {
+        lastMovies = selectLastMovies;
     }
 
-    public void addNewMovieNames(Poster newMovieName) {
-        Poster[] tmp = new Poster[movieNames.length + 1];
-        for (int i = 0; i < movieNames.length; i++) {
-            tmp[i] = movieNames[i];
+    public void addNewMovie(Poster newMovie) {
+        Poster[] tmp = new Poster[posters.length + 1];
+        for (int i = 0; i < posters.length; i++) {
+            tmp[i] = posters[i];
         }
-        tmp[tmp.length - 1] = newMovieName;
-        movieNames = tmp;
+        tmp[tmp.length - 1] = newMovie;
+        posters = tmp;
     }
 
-    public Poster[] findLastMovies() {
-        if (lastMovieLength > movieNames.length) {
-            lastMovieLength = movieNames.length;
-        }
-        Poster[] result = new Poster[lastMovieLength];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = movieNames[movieNames.length - 1 - i];
-        }
-        lastMovie = result;
-        return lastMovie;
-    }
-
-    public Poster[] findAll() {
-        Poster[] all = getMovieNames();
+    public Poster[] allMovie() {
+        Poster[] all = getPosters();
         return all;
     }
 
+    public Poster[] lastMovie() {
+        if (posters.length < lastMovies) {
+            lastMovies = posters.length;
+        }
+        Poster[] result = new Poster[lastMovies];
+        for (int i = 0; i < lastMovies; i++) {
+            result[i] = posters[posters.length - 1 - i];
+        }
+        return result;
+    }
 
 }

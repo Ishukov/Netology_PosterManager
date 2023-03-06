@@ -7,4 +7,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Poster {
     private String movieName;
+    private int id;
+
 }
