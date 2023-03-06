@@ -83,4 +83,38 @@ public class PosterManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldSelectedLessLastMovies() {
+        PosterManager repo = new PosterManager(5);
+        repo.addNewMovie(movie1);
+        repo.addNewMovie(movie2);
+        repo.addNewMovie(movie3);
+        repo.addNewMovie(movie4);
+        repo.addNewMovie(movie5);
+        repo.addNewMovie(movie6);
+        repo.addNewMovie(movie7);
+        repo.addNewMovie(movie8);
+        repo.addNewMovie(movie9);
+        repo.addNewMovie(movie10);
+
+
+        Poster expected[] = {movie10, movie9, movie8, movie7, movie6};
+        Poster actual[] = repo.lastMovie();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSelectedMoreLastMovies() {
+        PosterManager repo = new PosterManager(7);
+        repo.addNewMovie(movie1);
+        repo.addNewMovie(movie2);
+        repo.addNewMovie(movie3);
+
+        Poster expected[] = {movie3, movie2, movie1};
+        Poster actual[] = repo.lastMovie();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }

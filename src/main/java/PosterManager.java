@@ -1,18 +1,20 @@
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 
 
 public class PosterManager {
     private Poster[] posters = new Poster[0];
-    private int lastMovies = 10;
+    private int lastMovies;
+
+    public PosterManager() {
+        this.lastMovies = 10;
+    }
 
     public PosterManager(int selectLastMovies) {
-        lastMovies = selectLastMovies;
+        this.lastMovies = selectLastMovies;
     }
 
     public void addNewMovie(Poster newMovie) {
@@ -30,11 +32,14 @@ public class PosterManager {
     }
 
     public Poster[] lastMovie() {
+        int resultLength;
         if (posters.length < lastMovies) {
-            lastMovies = posters.length;
+            resultLength = posters.length;
+        } else {
+            resultLength = lastMovies;
         }
-        Poster[] result = new Poster[lastMovies];
-        for (int i = 0; i < lastMovies; i++) {
+        Poster[] result = new Poster[resultLength];
+        for (int i = 0; i < resultLength; i++) {
             result[i] = posters[posters.length - 1 - i];
         }
         return result;
