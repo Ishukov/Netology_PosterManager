@@ -1,47 +1,35 @@
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class PosterManager {
-    public Poster[] movieNames = new Poster[0];
-    public Poster[] lastMovie = new Poster[0];
-    public int lastMovieLength = 10;
+    private PosterRepository repo;
 
-    public PosterManager(int findLast) {
-        if (findLast < 0) {
-            return;
-        }
-        lastMovieLength = findLast;
+    public PosterManager(PosterRepository repo) {
+        this.repo = repo;
     }
 
-    public void addNewMovieNames(Poster newMovieName) {
-        Poster[] tmp = new Poster[movieNames.length + 1];
-        for (int i = 0; i < movieNames.length; i++) {
-            tmp[i] = movieNames[i];
-        }
-        tmp[tmp.length - 1] = newMovieName;
-        movieNames = tmp;
+    public void addNewMovie(Poster newMovie) {
+        repo.addNewMovie(newMovie);
     }
 
-    public Poster[] findLastMovies() {
-        if (lastMovieLength > movieNames.length) {
-            lastMovieLength = movieNames.length;
-        }
-        Poster[] result = new Poster[lastMovieLength];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = movieNames[movieNames.length - 1 - i];
-        }
-        lastMovie = result;
-        return lastMovie;
+    public Poster[] allMovies() {
+        Poster[] tmp = repo.allMovie();
+        return tmp;
     }
 
-    public Poster[] findAll() {
-        Poster[] all = getMovieNames();
-        return all;
+    public Poster[] lastMovie() {
+        Poster[] tmp = repo.lastMovie();
+        return tmp;
     }
 
+    public Poster[] findId(int id) {
+        Poster[] tmp = repo.findId(id);
+        return tmp;
+    }
 
+    public void removeById(int id) {
+        repo.removeById(id);
+    }
+
+    public void removeAll() {
+        repo.removeAll();
+    }
 }
+
