@@ -3,16 +3,16 @@ import org.junit.jupiter.api.Test;
 
 public class PosterManagerTest {
 
-    Poster movie1 = new Poster("Film1", 11);
-    Poster movie2 = new Poster("Film2", 12);
-    Poster movie3 = new Poster("Film3", 13);
-    Poster movie4 = new Poster("Film4", 14);
-    Poster movie5 = new Poster("Film5", 15);
-    Poster movie6 = new Poster("Film6", 16);
-    Poster movie7 = new Poster("Film7", 17);
-    Poster movie8 = new Poster("Film8", 18);
-    Poster movie9 = new Poster("Film9", 19);
-    Poster movie10 = new Poster("Film10", 20);
+    Poster movie1 = new Poster("Film1");
+    Poster movie2 = new Poster("Film2");
+    Poster movie3 = new Poster("Film3");
+    Poster movie4 = new Poster("Film4");
+    Poster movie5 = new Poster("Film5");
+    Poster movie6 = new Poster("Film6");
+    Poster movie7 = new Poster("Film7");
+    Poster movie8 = new Poster("Film8");
+    Poster movie9 = new Poster("Film9");
+    Poster movie10 = new Poster("Film10");
 
 
     @Test
@@ -33,7 +33,7 @@ public class PosterManagerTest {
         repo.addNewMovie(movie3);
 
         Poster expected[] = {movie1, movie2, movie3};
-        Poster actual[] = repo.getPosters();
+        Poster actual[] = repo.getPosters().clone();
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -46,7 +46,7 @@ public class PosterManagerTest {
         repo.addNewMovie(movie3);
 
         Poster expected[] = {movie1, movie2, movie3};
-        Poster actual[] = repo.allMovie();
+        Poster actual[] = repo.allMovie().clone();
 
         Assertions.assertArrayEquals(expected, actual);
     }

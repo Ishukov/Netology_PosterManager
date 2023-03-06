@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
+
 public class PosterManager {
     private Poster[] posters = new Poster[0];
     private int lastMovies = 10;
@@ -38,5 +39,4 @@ public class PosterManager {
         }
         return result;
     }
-
 }
